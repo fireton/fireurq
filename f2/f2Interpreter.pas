@@ -509,9 +509,11 @@ begin
    begin
     l_Idx := Context.Decorators.IndexOf(l_DName);
     if l_Idx > -1 then
-     Context.Decorators.Delete(l_Idx)
+     Context.Decorators.Delete(l_Idx);
+    { // не считаем ошибкой удаление несуществующего декоратора
     else
      raise EFURQRunTimeError.CreateFmt(sDecorNotFound, [l_Lexer.TokenValue]);
+    } 
    end;
    l_Lexer.NextToken;
    case l_Lexer.Token of
