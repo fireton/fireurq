@@ -1,0 +1,10 @@
+
+:menu2
+decoradd menu (0, 0, 4) image "menu.png", 0,0,800,600
+decoradd klik2 (0,0, 3) clickarea 1000,1000, "why"
+end
+
+:why
+cls
+decordel
+end 

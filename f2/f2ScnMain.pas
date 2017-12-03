@@ -1335,7 +1335,7 @@ begin
   if not IsProcessed(theEvent) then
   begin
    // потому как всЄ могло помен€тьс€ во врем€ обработки гу€
-   if l_Idx > Context.Decorators.Count-1 then
+   if l_Idx >= Context.Decorators.Count then
     l_Idx := Context.Decorators.Count-1;
 
    while (l_Idx >= 0) do
@@ -1345,7 +1345,11 @@ begin
     begin
      l_AD := l_Decor.AsActionDecorator;
      if (l_AD <> nil) and l_Decor.Visible then
+     begin
       l_AD.ProcessEvent(theEvent);
+      if IsProcessed(theEvent) then
+       Break;
+     end;
     end;
     Dec(l_Idx);
    end;
