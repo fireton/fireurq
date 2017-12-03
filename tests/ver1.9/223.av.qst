@@ -1,0 +1,3 @@
+:dfdf
+decoradd test (50,50) TEXT "собственно, текст"
+end

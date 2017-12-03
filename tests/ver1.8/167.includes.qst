@@ -1,0 +1,8 @@
+%include inc1.qst
+:0
+pln Пробуем инклюды
+btn in1, Локация в первом инклюде
+btn in2, Локация во втором инклюде
+end
+%include inc\inc2.qst
+

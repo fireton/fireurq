@@ -1,0 +1,10 @@
+:0
+decoradd b1 (50, 70) TEXTBUTTON "Кнопка", "bla"
+decoradd b2 (50, 125) TEXTBUTTON "Очень длинная кнопка, вот прям офигеть", "bla"
+end
+
+:bla
+decor_b1_width = decor_b2_width
+decor_b1_align = 3
+end
+

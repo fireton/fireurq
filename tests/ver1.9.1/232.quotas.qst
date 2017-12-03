@@ -1,0 +1,6 @@
+:0
+a = "That's right!"
+b = '"Shit!", she said...'
+
+pln #%a$
+pln #%b$

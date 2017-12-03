@@ -1,0 +1,12 @@
+:0
+decoradd my (50, 300) TEXT "это такой декоратор со [[ссылкой|!bla]] в нём"
+anykey
+p Введите что-нибудь:#$
+a = ""
+input a
+pln Вы ввели: #%a$
+end
+
+:bla
+pln bla
+end

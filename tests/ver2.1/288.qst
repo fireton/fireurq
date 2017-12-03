@@ -1,0 +1,8 @@
+pln Toggle fullscreen mode
+btn !switch, Do it!
+end
+
+:switch
+pln #fullscreen$
+if fullscreen = 1 then fullscreen = 0 else fullscreen = 1
+end

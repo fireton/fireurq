@@ -1,0 +1,11 @@
+:in2
+pln Это текст из ВТОРОГО инклюда...
+gag
+proc in3
+btn 0, назад
+end 
+
+%include inc3.qst
+
+
+%include bla.qst ; это фиктивный инклюд

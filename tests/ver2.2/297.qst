@@ -1,0 +1,6 @@
+fullscreen=1
+pause 10
+perkill
+pln fullscreen = #fullscreen$
+anykey
+quit

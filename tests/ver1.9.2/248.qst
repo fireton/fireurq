@@ -1,0 +1,23 @@
+;end
+
+decoradd line (150, 200) GIF "line.gif"
+decoradd line2 (150, 300) GIF "line.gif"
+
+decor_line2_anispeed = 200
+
+pause 2000
+
+decor_line2_anispeed = 0
+
+pause 2000
+
+decor_line2_anispeed = 100
+
+
+save 0
+
+end
+
+:0
+pln Восстановлено.
+end

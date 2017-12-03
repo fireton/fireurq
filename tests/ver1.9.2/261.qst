@@ -1,0 +1,16 @@
+decoradd txt (100, 100) TEXT "Это текстовый декоратор"
+pln #decor_txt_width$
+anykey
+decor_txt_text = "Это текст с другой длиной, судя по всему"
+pln #decor_txt_width$
+save "Переменная длина", 1
+anykey
+decor_txt_width = 150
+pln #decor_txt_width$
+save "Постоянная длина", 2
+anykey
+decor_txt_text = "Это тоже текст, но другой длины, чтобы посмотреть"
+pln #decor_txt_width$
+anykey
+decor_txt_width = 0
+pln #decor_txt_width$

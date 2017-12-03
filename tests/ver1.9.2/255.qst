@@ -1,0 +1,20 @@
+
+:начало
+decoradd анимация_героя (50,50, -2) ANIMATION "fairy122.png", 0, 0, 120, 150, 12
+decor_анимация_героя_anispeed = 1000
+pln & pln & pln & pln & pln & pln & pln & pln
+btn дальше,Дальше
+
+end
+
+:дальше
+pln Кадр 1
+decor_анимация_героя_frame = 1
+anykey
+pln Кадр 5
+decor_анимация_героя_frame = 5
+anykey
+pln Кадр 10
+decor_анимация_героя_frame = 10
+
+end

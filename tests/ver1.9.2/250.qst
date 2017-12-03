@@ -1,0 +1,14 @@
+:0
+decoradd fireton (200,200) IMAGE "ton_hat.png"
+anykey
+decor_fireton_flipx = 1
+anykey
+decor_fireton_flipy = 1
+save 1
+:1
+anykey
+decor_fireton_flipx = 0
+anykey
+decor_fireton_flipy = 0
+pln that's all
+end

@@ -1,0 +1,8 @@
+:0
+decoradd test (10, 100) text "Это тест AV для [[декоратора со ссылкой|link]]"
+;decor_test_script = "mov 600, 100, 5000/mov 10, 100, 5000/rst"
+end
+
+:link
+goto 0
+end

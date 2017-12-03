@@ -1,0 +1,13 @@
+:0
+decoradd button (100, 100) IMGBUTTON "texture.png", 566, 50, 44, 35, "click"
+end
+
+:click
+pln CLICK!
+if decor_button_enabled then pln Enabled! else pln Disabled!
+decor_button_enabled = 0
+if decor_button_enabled then pln Enabled! else pln Disabled!
+pause 3000
+decor_button_enabled = 1
+if decor_button_enabled then pln Enabled! else pln Disabled!
+end

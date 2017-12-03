@@ -1,0 +1,10 @@
+:0
+pln это [[ссылка|!link]], она должна работать
+:1
+pause 300
+p .
+goto 1
+
+:link
+pln click
+end

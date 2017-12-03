@@ -1,0 +1,16 @@
+decoradd mytext (100, 10) TEXT "Текст со [[ссылкой]] в нём."
+end
+
+:ссылкой
+if decor_mytext_enabled then decor_mytext_enabled = 0 else decor_mytext_enabled = 1
+a = a + 1
+decor_mytext_text = "А это #a$-й изменённый текст со [[ссылкой]]"
+:buttons
+btn ссылкой, перещёлкнуть
+btn dosave, записать
+end
+
+:dosave
+save buttons
+goto ссылкой 
+end

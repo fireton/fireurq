@@ -1,0 +1,20 @@
+:0
+gss_runcount = gss_runcount + 1
+pln Количество запусков: #gss_runcount$
+pln
+:1
+pln Текущее имя: #%gss_name$
+btn 2, Ввести новое имя
+btn 3, Сбросить данные
+end
+
+:2
+a = ""
+p Введите новое имя:#$
+input a
+gss_name = a
+goto 1
+
+:3
+gsskill
+goto 1

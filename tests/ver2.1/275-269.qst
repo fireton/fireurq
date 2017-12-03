@@ -1,0 +1,14 @@
+proc _arcsin(1)
+pln _arcsin(1)=#_result$
+proc _arccos(1)
+pln _arccos(1)=#_result$
+proc _arctan(1)
+pln _arctan(1)=#_result$
+proc _sqrt(4)
+pln _sqrt(4)=#_result$
+proc _power(4)
+pln _power(4)=#_result$
+proc _power(3,3)
+pln _power(3,3)=#_result$
+proc _power(27,1/3)
+pln _power(27,1/3)=#_result$

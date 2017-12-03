@@ -1,0 +1,19 @@
+:0
+
+a = "    синхрофазотрон  "
+
+proc _trim(a)
+pln -#%a$-
+pln -#%_result$-
+pln
+
+a = _result
+
+proc _scopy(a, 5)
+pln -#%a$-
+pln -#%_result$-
+pln
+
+proc _scopy(a, 1, 7)
+pln -#%a$-
+pln -#%_result$-

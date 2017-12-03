@@ -1,0 +1,13 @@
+:0
+decoradd mybtn (100,100) TEXTBUTTON "Кнопка", "!блям"
+save 1
+end
+
+:1
+pln загружено
+end
+
+:блям
+pln Блям!
+end
+

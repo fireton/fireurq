@@ -1,0 +1,3 @@
+:0
+proc _int(7.6)
+pln result = #_result$

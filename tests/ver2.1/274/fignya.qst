@@ -1,0 +1,55 @@
+:game
+
+money = 20
+hp_max = 30
+hp = 30
+level = 0
+lev_max = 50
+lev = 0
+
+linkcolor = textcolor
+
+x = 30
+y = 50
+w = 300
+h = 500
+decoradd квадрат (x,y, -2) RECT w, h, textcolor
+decoradd квадрат1 (x+1,y+1, -3) RECT w-2, h-2, 0xFF000000
+
+decoradd деньги (30,10, -1) TEXT "Деньги - #money$"
+decor_деньги_width = 170
+decoradd уровень (200,10, -1) TEXT "Уровень - #level$"
+decor_уровень_width = 150
+decoradd опыт (370,10, -1) TEXT "Опыт - #lev$\#lev_max$"
+decor_опыт_width = 180
+decoradd здоровье (550,10, -1) TEXT "Здоровье - #hp$\#hp_max$"
+decor_здоровье_width = 200
+
+decoradd меню (750, 10, -2) RECT 40, 25, textcolor
+decoradd меню1(752, 12, -3) RECT 36, 21, 0xFF000000
+decoradd меню2 (762,12, -4) TEXT "M"
+
+
+decoradd статус (430,565, -1) TEXT "[[~ Статус ~|!статус]]"
+decor_статус_width = 200
+
+decoradd дневник (600,565, -1) TEXT "[[~ Дневник ~|!дневник]]"
+decor_дневник_width = 200
+
+decoradd осн_текст (x+w+20,y, -2) RECT w+120, h, textcolor
+decoradd осн_текст1 (x+w+20+1,y+1, -3) RECT w+120-2, h-2, 0xFF000000
+
+decoradd кнопка (x+40,y+40, -5) TEXTBUTTON "tbuttons", "  ?", "начало"
+decoradd кнопка1 (x+80,y+59, -5) RECT 40, 2, textcolor
+decoradd кнопка2 (x+120,y+40, -5) TEXTBUTTON "tbuttons", "", "начало"
+
+end
+
+
+
+
+
+:начало
+
+end
+

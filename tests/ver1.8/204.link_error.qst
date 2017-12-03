@@ -1,0 +1,6 @@
+pln текст [[[ссылка|link]]] текст
+end
+
+:link
+pln clicked
+end

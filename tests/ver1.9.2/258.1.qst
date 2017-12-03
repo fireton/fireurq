@@ -1,0 +1,49 @@
+:start
+decoradd txt (400, 100) TEXT "Сохранение из ссылки в [[декораторе|!decosave]]"
+pln Этот текст должен остаться на экране после загрузки.
+p Этот текст#$
+image ton_hat.png
+p #$ с картинкой в середине.
+pln Это будет [[сохранение из ссылки|!fromlink]].
+save "Сохранение из кода", 1 & pln Это продолжение выполнения кода. & a = 10 & pln a = #a$
+save legacy, "Legacy save", 0
+btn sv, Сохранение кнопкой
+btn !sv2, Сохранение по локальному действию
+btn byproc, Сохранение через proc
+end
+
+:sv
+save "Кнопкой", 2
+pln Сохранено!
+end
+
+:sv2
+save "Локальное действие", 3
+pln Бдыщ!
+end
+
+:byproc
+pln Сохраняем через proc
+proc tosave
+pln Было сохранено через proc
+end
+
+:tosave
+save "Через proc", 4
+pln Done
+end
+
+:decosave
+save "Из декоратора", 5 & pln Done
+end
+
+:fromlink
+save "Из ссылки в тексте", 6 & pln Done
+end
+
+:legacy
+pln Это сохранёнка по-старому...
+end
+
+
+

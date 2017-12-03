@@ -1,0 +1,20 @@
+:0
+decoradd rect (10, 50) rect 100, 100, 0x20FFFFFF
+decoradd test (10, 50) clickarea 100, 100, "clickhandler"
+save 1
+end
+
+:1
+end
+
+:clickhandler
+decoradd click (500, 550) text "click! #%decor_test_target$"
+decor_click_script = "pau 2000 / col 0x01FFFFFF, 500 / del"
+decor_test_target = "%menu"
+end
+
+:menu
+btn 1, "Один"
+btn 1, "Два"
+btn 1, "Три"
+end

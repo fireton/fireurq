@@ -1,0 +1,10 @@
+decoradd mou (100,100) IMAGE "cursor.png"
+mousecursor="mou"
+pln Проверка мышиного курсора в сохранении и загрузке
+btn sss, "Сохранить"
+end
+
+:sss
+save "Сохранёнка"
+end
+

@@ -1,0 +1,12 @@
+:1
+
+newfile c:\temp\somefile.exe
+
+pln filename = #%fp_filename$
+
+fpln Hello, World!
+fpln
+fp Here
+fp #$we
+fp #$are!
+fpln

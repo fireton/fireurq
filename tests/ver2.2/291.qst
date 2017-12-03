@@ -1,0 +1,6 @@
+:0
+decoradd img (10,10) IMAGE "fake.png"
+play fake.ogg
+textfont = "fake.ttf[20]"
+image fake.jpg
+music fake.mp3

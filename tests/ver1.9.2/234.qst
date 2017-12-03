@@ -1,0 +1,17 @@
+:0
+pln это [[ссылка|%menu]] для проверки менюшек
+pause 2000
+decoradd arrow (100,100) IMAGE "redarr.png"
+mousecursor="arrow"
+end
+
+:menu
+btn 1, Пункт первый
+btn 1, Пункт второй
+btn 1, Пункт третий
+end
+
+:1
+decordel arrow
+;mousecursor=""
+end

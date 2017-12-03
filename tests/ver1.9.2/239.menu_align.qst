@@ -1,0 +1,53 @@
+decoradd b_lt (10, 100) TEXTBUTTON "LT", "!setalign('LT')"
+decoradd b_lb (10+65*1, 100) TEXTBUTTON "LB", "!setalign('LB')"
+decoradd b_lc (10+65*2, 100) TEXTBUTTON "LC", "!setalign('LC')"
+decoradd b_rt (10+65*3, 100) TEXTBUTTON "RT", "!setalign('RT')"
+decoradd b_rb (10+65*4, 100) TEXTBUTTON "RB", "!setalign('RB')"
+decoradd b_rc (10+65*5, 100) TEXTBUTTON "RC", "!setalign('RC')"
+decoradd b_tl (10+65*6, 100) TEXTBUTTON "TL", "!setalign('TL')"
+decoradd b_tr (10+65*7, 100) TEXTBUTTON "TR", "!setalign('TR')"
+decoradd b_tc (10+65*8, 100) TEXTBUTTON "TC", "!setalign('TC')"
+decoradd b_bl (10+65*9, 100) TEXTBUTTON "BL", "!setalign('BL')"
+decoradd b_br (10+65*10, 100) TEXTBUTTON "BR", "!setalign('BR')"
+decoradd b_bc (10+65*11, 100) TEXTBUTTON "BC", "!setalign('BC')"
+decoradd box (380, 250) RECT 40, 40, 0xEDAE24
+decoradd click (380, 250) CLICKAREA 40, 40, "%menu"
+pln & pln & pln & pln & pln & pln & pln & pln & pln & pln & pln
+textfont = "arial.ttf[14]"
+col = textcolor
+textcolor = 0x43688B
+pln Нажимайте на жёлтый квадрат, чтобы увидеть как меню выравнивается относительно декоратора. Кнопки наверху меняют тип выравнивания. Также можно нажать на ссылку и кнопку внизу, чтобы проверить как будет выглядеть меню относительно их.
+textfont = ""
+textcolor = col
+pln
+textalign = 3
+btnalign = 3
+pln Это пример того, как меню [[будет появляться|%menu]] по отношении к ссылке.
+pln
+btn %menu, А также к кнопке
+proc setalign("TL")
+end
+
+:foo
+end
+
+:menu
+btn !foo, Это первый пункт меню
+btn !foo, Это второй пункт меню
+btn !foo, Это третий пункт меню
+btn !foo, Это ещё один пункт меню
+btn !foo, Проверочный пункт
+end
+
+:setalign
+al = setalign_1
+decor_click_menualign = al
+bmenualign = al
+lmenualign = al
+dn = "b_#%al$"
+rx = decor_#%dn$_x - 1
+ry = decor_#%dn$_y - 1
+rw = decor_#%dn$_width + 2
+rh = decor_#%dn$_height + 2
+decoradd sel (rx,ry,5) RECT rw, rh, 0xAF0000
+end

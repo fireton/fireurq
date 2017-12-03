@@ -1,0 +1,19 @@
+inv+ Axe
+:1
+pln First location
+btn 2, to second
+end
+
+:2
+pln Second location
+btn 1, bla */
+btn 1, |
+end
+
+:use_Axe_Cut
+pln Cut-cut!
+end
+
+:use_Axe_Chop
+pln Chop-Chop!
+end

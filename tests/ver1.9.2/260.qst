@@ -1,0 +1,4 @@
+:0
+decoradd zz (100,100) TEXT "foo",textcolor, "georgiab.ttf[50]"
+decor_zz_width = 10
+

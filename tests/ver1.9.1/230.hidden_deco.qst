@@ -1,0 +1,7 @@
+:0
+decoradd button (100, 100) IMGBUTTON "texture.png", 566, 50, 44, 35, "click"
+end
+
+:click
+pln CLICK!
+decor_button_hide = 1

@@ -1,0 +1,25 @@
+:1
+pln 
+pln
+pln «десь находитс€ [[ссылка, частично перекрыта€|!bla]] декоратором CLICKAREA
+decoradd cl (230, 70, -10) CLICKAREA 100, 100, "!zen"
+decoradd bb (275, 85, 1) TEXTBUTTON " нопка", "!bbc"
+btn !bbcp,  нопка в тексте
+btn !bbcp, ≈щЄ кнопка в тексте
+end
+
+:bla
+pln клик ссылку!
+end
+
+:zen
+pln клик декоратор!
+end
+
+:bbc
+pln клик кнопку!
+end
+
+:bbcp
+pln клик кнопку в тексте!
+end

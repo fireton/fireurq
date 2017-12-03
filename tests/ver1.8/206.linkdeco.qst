@@ -1,0 +1,17 @@
+:0
+decoradd test (100, 100) TEXT "Блендинг [[текста|!blendtext]], запуск [[скрипта|!script]]. И [[меню|%menu]].", "arial.ttf[15]", 0x6E93AD, 0x956DAA, 0xD49DF2
+end
+
+:blendtext
+decorcol test 0xC1968A, 0xC2BB47, 0xF1EC98, 2000
+end
+
+:script
+decorscr test "colx 0xC1968A, 2000/mov 100, 200, 2000/colx 0x6E93AD, 2000/mov 100,100,2000/rst"
+end
+
+:menu
+btn 0, Сбросить
+btn 0, Скинуть
+btn 0, Дропнуть
+end

@@ -1,0 +1,9 @@
+pln Save Test
+btn 1, Save
+end
+
+:1
+save
+pln just saved.
+end
+

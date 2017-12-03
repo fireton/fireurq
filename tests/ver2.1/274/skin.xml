@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="window-1251"?>
+<skin>
+  <screen width="800" height="600" />
+  <resources>
+   <texture name="res3" file="content\scroll.png" />
+   <texture name="res5" file="button1.png" /> 
+   <texture name="res6" file="res6.png" /> 
+   <font name="btnfont" file="georgia.ttf[19]" />
+   <font name="titlefont" file="georgiab.ttf[40]" />
+   <buttonframe name="tbuttons" tex="res5" font="btnfont" texx="0" texy="0" width="42" height="42" leftw="4" midw="34" cnormal="FFFFCC66" cfocused="FFFFCC44" />
+  </resources>
+
+  <saveload bgcolor="00000000" captioncolor="FFFFCC44" captionfont="titlefont"> 
+  <buttons frame="tbuttons" /> 
+  </saveload> 
+
+  <main bgcolor="FF000000">
+  <textpane bframe="tbuttons" btnalign="3"/>
+  <icons>
+  <scroll tex="res3" tx="0" ty="0" width="36" height="32" />
+  </icons>
+   <menus selectioncolor="ff660000">
+    <sysbutton tex="res6" tx="0" ty="0" width="2" height="2" posx="2" posy="3"/>
+    <sysmenu posx="0" posy="0" datum="lt"/>
+    <invbutton tex="res6" tx="0" ty="0" width="2" height="2" posx="2" posy="3"/>
+    <invmenu posx="0" posy="0" datum="lb"/>
+   </menus>
+  </main>
+</skin>

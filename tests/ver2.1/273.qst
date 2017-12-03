@@ -1,0 +1,7 @@
+pln Legit Quit
+btn 1, Quit
+end
+
+:1
+quit
+end

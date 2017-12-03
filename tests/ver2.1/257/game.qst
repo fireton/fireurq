@@ -1,0 +1,36 @@
+:nachalo_a
+
+perkill
+invkill
+
+gametitle = "Четыре дня рождения в одном доме"
+
+
+textcolor = 0xFFFF99
+linkcolor = 0xFFFFCC
+linkhcolor = 0xde0a46
+
+:nachalo
+
+textpane_left = 220
+textpane_top = 620
+textpane_width = 400
+textpane_height = 200
+
+textalign = 3
+btnalign = 1
+btntxtalign = 3
+textcolor = 0xFFCC00
+
+
+textfont = "rur.ttf[36]"
+
+pln A
+
+;decoradd text_title (142,40,-2) TEXT "Четыре дня рождения#/$в одном доме", 0xFFCC00, "rur.ttf[36]"
+;decor_text_title_width = 600
+;decor_text_title_align = 3
+
+
+end
+

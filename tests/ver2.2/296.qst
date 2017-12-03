@@ -1,0 +1,25 @@
+:0
+base1 = "foo"
+base2 = "bar"
+savenamebase = base1
+save
+
+:loop
+pln current base is #%savenamebase$
+btn sw, Switch base
+btn sv, Save
+btn lo, Load
+end
+
+:sw
+if savenamebase = base1 then savenamebase = base2 else savenamebase = base1
+cls
+goto loop
+
+:sv
+save savenamebase
+goto loop
+
+:lo
+load
+goto loop

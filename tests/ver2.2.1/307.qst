@@ -1,0 +1,7 @@
+:0
+btn sv, save
+end
+
+:sv
+save "TEST"
+end

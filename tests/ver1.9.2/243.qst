@@ -1,0 +1,19 @@
+:0
+btn s, Save
+btn l, Load
+end
+
+:s
+save 1, "Сохранёнка"
+goto 0
+
+:l
+load
+pln Отказались :)
+goto 0
+end
+
+:1
+pln Загрузились!
+goto 0
+end

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="window-1251"?>
+<skin>
+  <screen width="800" height="600" />
+  <resources>
+   <texture name="res" file="furq_texture.png" />
+			<texture name="dec1" file="dec1.png" />
+			<texture name="dec2" file="dec2.png" />
+			<texture name="dec3" file="dec3.png" />
+  </resources>
+  <main>
+   <textpane left="20" top="55" width="760" height="525" />
+   <menus>
+    <sysbutton tex="res" tx="0" ty="0" width="106" height="46" posx="0" posy="0"/>
+    <sysmenu posx="20" posy="42" datum="lt"/>
+    <invbutton tex="res" tx="424" ty="0" width="130" height="46" posx="671" posy="0"/>
+    <invmenu posx="780" posy="42" datum="rt"/>
+   </menus>
+   <decorations>
+    <image tex="res" tx="0" ty="47" width="566" height="17" posx="105" posy="29"/>
+				<image tex="dec1" posx="25" posy="100"/>
+				<image tex="dec2" posx="100" posy="100" posz="5"/>
+				<image tex="dec3" posx="175" posy="100" posz="-5"/>
+   </decorations>
+  </main>
+</skin>

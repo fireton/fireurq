@@ -1,0 +1,8 @@
+:0
+decoradd b (100, 300) TEXTBUTTON "button", "!click"
+decoradd t (100, 150) TEXT "disp"
+end
+
+:click
+decor_t_text = "#mouse_x$, #mouse_y$"
+end

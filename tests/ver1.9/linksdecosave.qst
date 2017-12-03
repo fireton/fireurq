@@ -1,0 +1,19 @@
+:0
+decoradd rect (10, 50) text "Это [[ссылка|clickhandler]], она должна работать."
+;decoradd test (10, 50) clickarea 100, 100, "%menu"
+save 1
+end
+
+:1
+end
+
+:clickhandler
+decoradd click (500, 550) text "click!"
+decor_click_script = "pau 2000 / col 0x01FFFFFF, 500 / del"
+end
+
+:menu
+btn 1, "Один"
+btn 1, "Два"
+btn 1, "Три"
+end

@@ -1,0 +1,14 @@
+:0
+inv+ Ложка
+inv+ Вилка
+pln Это пример того, как можно [[разрешать|!on]] и [[запрещать|!off]] инвентарь.
+end
+
+:on
+inventory_enabled = 1
+end
+
+:off
+inventory_enabled = 0
+end
+

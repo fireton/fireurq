@@ -1,0 +1,4 @@
+:0
+pln time: #time$
+anykey
+goto 0
