@@ -1,0 +1,13 @@
+:0
+decoradd d1 (30, 100) text "д1"
+decoradd d2 (60, 100) text "д2"
+decoradd d3 (90, 100) text "д3"
+decoradd d4 (120, 100) text "д4"
+decoradd d5 (150, 100) text "д5"
+
+btn 1, ”далить
+end
+
+:1
+decordel d1, d2, d125, d3, d4, d5
+end

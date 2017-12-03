@@ -1,0 +1,27 @@
+value=0
+dec_text="Кликни меня: [[0|change]] [[1|change]]"
+:start
+proc add_decor
+end
+
+:add_decor
+proc exec_dec1
+decoradd декоратор (100,100) TEXT dec_text
+decoradd декоратор2 (100, 125) TEXT "[[Закончить|fin]]"
+
+end 
+
+:change
+decordel декоратор
+value=1-value
+if value=0 then dec_text="Кликни меня: [[0|change]] [[1|change]]" else dec_text="Кликни меня: [[1|change]] [[0|change]]"
+goto add_decor
+end
+
+:exec_dec1
+decoradd декоратор (100, 100) TEXT dec_text
+end
+
+:fin
+decordel
+end
