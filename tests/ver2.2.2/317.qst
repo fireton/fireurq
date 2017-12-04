@@ -3,6 +3,8 @@ decoradd d2 (400, 100) TEXTBUTTON, "Ещё декоратор", "!9"
 decoradd d3 (500, 100) TEXTBUTTON, "И ещё", "!9"
 btn_focussound = "bum.ogg"
 btn_clicksound = "blam.ogg"
+decor_d2_focussound = "bum.ogg"
+decor_d2_clicksound = "blam.ogg"
 :0
 btn 0, Кнопка
 btn 0, Ещё кнопка
