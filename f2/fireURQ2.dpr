@@ -38,7 +38,7 @@ begin
   end
   else
    if l_QuestToOpen = '' then
-    l_QuestToOpen := l_Str; 
+    l_QuestToOpen := ExpandFileName(l_Str);
  end;
 end;
 
