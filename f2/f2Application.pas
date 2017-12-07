@@ -70,13 +70,22 @@ uses
  ;
 
 const
+ c_sLogExt = '.log';
+ c_sFullscreen = 'fullscreen';
+ c_sSplash = 'splash';
+ c_sMain = 'main';
+ c_sGssExt = '.gss';
+ sFireURQError = 'FireURQ: ОШИБКА';
+ sSkinXml = 'skin.xml';
+ sSkinError = 'Ошибка: skin.xml пуст или испорчен.';
+
  SFileMaskMain  = 'main.qst;main.qs1;main.qs2';
  SFileMaskGame  = 'game.qst;game.qs1;game.qs2';
  SFileMaskAny   = '*.qst;*.qs1;*.qs2';
  SErrQSZError = 'Ошибка формата QSZ';
 
  SFurqTexturePng  = 'furq_texture.png';
- SDefaultTextFont = 'serif'; //'georgia.ttf';
+ SDefaultTextFont = 'serif'; 
  SDefaultMenuFont = 'sans[16,0.8,0.2]';
 
  c_s_DefaultPackName = 'fireurq.pak';
@@ -85,7 +94,7 @@ const
 procedure OutError(const aMsg: string);
 begin
  gD2DE.System_Log(aMsg);
- MessageBox(gD2DE.WHandle, PAnsiChar(aMsg), 'FireURQ: ОШИБКА', MB_OK + MB_ICONERROR);
+ MessageBox(gD2DE.WHandle, PAnsiChar(aMsg), sFireURQError, MB_OK + MB_ICONERROR);
 end;
 
 
@@ -94,18 +103,18 @@ var
  l_Dir: string;
  l_Path: array[0..MAX_PATH] of Char;
 begin
- inherited Create(800, 600, True, 'FireURQ');
+ inherited Create(800, 600, True, 'FireURQ'); // do not localize
  gD2DE.FixedFPS := 120;
  l_Dir := ExtractFilePath(ParamStr(0));
  if not IsDirWritable(l_Dir) then
  begin
   if SHGetSpecialFolderPath(0, @l_Path, CSIDL_APPDATA, True) then
   begin
-   l_Dir := IncludeTrailingPathDelimiter(l_Path) + 'FireURQ';
+   l_Dir := IncludeTrailingPathDelimiter(l_Path) + 'FireURQ'; // do not localize
    ForceDirectories(l_Dir);
   end;
  end;
- gD2DE.LogFileName := IncludeTrailingPathDelimiter(l_Dir) + ChangeFileExt(ExtractFileName(ParamStr(0)), '.log');
+ gD2DE.LogFileName := IncludeTrailingPathDelimiter(l_Dir) + ChangeFileExt(ExtractFileName(ParamStr(0)), c_sLogExt);
  f_QuestFileName := aQuest;
  f_LogToFile := aLogToFile;
  f_DebugMode := aDebugMode;
@@ -181,11 +190,11 @@ begin
   f_QuestToOpen := QuestFileName;
  SetCurrentDir(ExtractFilePath(QuestFileName));
  f_Skin := nil;
- if gD2DE.Resource_Exists('skin.xml', IsFromPack) then
+ if gD2DE.Resource_Exists(sSkinXml, IsFromPack) then
  begin
-  f_Skin := Tf2Skin.Create('skin.xml', IsFromPack);
+  f_Skin := Tf2Skin.Create(sSkinXml, IsFromPack);
   if f_Skin = nil then
-   OutError('Ошибка: skin.xml пуст или испорчен.');
+   OutError(sSkinError);
  end;
  if Skin = nil then
  begin
@@ -196,17 +205,17 @@ begin
   end;
   f_Skin := Tf2Skin.Create(c_s_DefaultSkinName);
  end;
- if SettingsStorage.IsVarExists('fullscreen') then
-  l_FullScreen := SettingsStorage['fullscreen'] <> 0
+ if SettingsStorage.IsVarExists(c_sFullscreen) then
+  l_FullScreen := SettingsStorage[c_sFullscreen] <> 0
  else
   l_FullScreen := Skin.FullScreen;
  gD2DE.ScreenWidth  := Skin.ScreenWidth;
  gD2DE.ScreenHeight := Skin.ScreenHeight;
  gD2DE.Windowed := not l_FullScreen;
- AddScene('splash', Tf2SplashScene.Create(Self));
- AddScene('main', Tf2MainScene.Create(Self));
- CurrentScene := 'splash';
- //CurrentScene := 'main';
+ AddScene(c_sSplash, Tf2SplashScene.Create(Self));
+ AddScene(c_sMain, Tf2MainScene.Create(Self));
+ CurrentScene := c_sSplash;
+ //CurrentScene := c_sMain;
  Result := True;
 end;
 
@@ -267,7 +276,7 @@ begin
    if SHGetSpecialFolderPath(0, @l_Path, CSIDL_APPDATA, True) then
    begin
     l_FileName := ExtractFileName(QuestFileName);
-    f_SavePath := IncludeTrailingPathDelimiter(l_Path) + 'FireURQ\' + ChangeFileExt(l_Filename, '_') +
+    f_SavePath := IncludeTrailingPathDelimiter(l_Path) + 'FireURQ\' + ChangeFileExt(l_Filename, '_') + // do not localize
        MD5DigestToStr(MD5File(QuestFileName));
     ForceDirectories(f_SavePath);
    end;
@@ -283,7 +292,7 @@ begin
  if f_SettingsStorage = nil then
  begin
   l_FileName := ExtractFileName(QuestFileName);
-  f_SettingsStorage := Tf2SettingsStorage.Create(IncludeTrailingPathDelimiter(SavePath) + ChangeFileExt(l_Filename, '.gss'));
+  f_SettingsStorage := Tf2SettingsStorage.Create(IncludeTrailingPathDelimiter(SavePath) + ChangeFileExt(l_Filename, c_sGssExt));
  end;
  Result := f_SettingsStorage;
 end;
@@ -300,3 +309,4 @@ end;
 
 
 end.
+
