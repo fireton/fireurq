@@ -126,6 +126,7 @@ type
   property FontPool: Tf2FontPool read f_FontPool;
   property FpFilename: string read f_FpFilename;
   property LinkMenuAlign: Td2dAlign read f_LinkMenuAlign;
+  property SettingsStorage: Tf2SettingsStorage read f_SettingsStorage write f_SettingsStorage;
   property Skin: Tf2Skin read f_Skin;
   property TextAlign: Td2dTextAlignType read f_TextAlign write f_TextAlign;
   property TextColor: Td2dColor read f_TextColor write f_TextColor;
@@ -237,8 +238,6 @@ begin
  f_DefButtonFrame := aDefButtonFrame;
 
  f_Path := aPath;
-
- f_SettingsStorage := Tf2SettingsStorage.Create(IncludeTrailingPathDelimiter(f_Path)+ChangeFileExt(f_Filename, '.gss'));
  inherited Create(aCode);
 end;
 
@@ -246,7 +245,6 @@ procedure Tf2Context.Cleanup;
 begin
  FreeAndNil(f_Decorators);
  FreeAndNil(f_FontPool);
- FreeAndNil(f_SettingsStorage);
  inherited;
 end;
 

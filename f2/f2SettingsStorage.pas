@@ -22,6 +22,7 @@ type
  public
   constructor Create(const aDataFN: AnsiString);
   procedure Clear;
+  function IsVarExists(const aName: AnsiString): Boolean;
  end;
 
 implementation
@@ -40,6 +41,7 @@ begin
  f_DataFN := aDataFN;
  f_Data := JclStringList;
  f_Data.Sorted := True;
+ f_Data.CaseSensitive := False;
  if FileExists(f_DataFN) then
   LoadDataFile;
 end;
@@ -54,6 +56,11 @@ procedure Tf2SettingsStorage.Clear;
 begin
  f_Data.Clear;
  DeleteFile(f_DataFN);
+end;
+
+function Tf2SettingsStorage.IsVarExists(const aName: AnsiString): Boolean;
+begin
+ Result := f_Data.IndexOf(aName) >= 0;
 end;
 
 procedure Tf2SettingsStorage.LoadDataFile;

@@ -7,7 +7,8 @@ uses
  d2dApplication,
  d2dGUIButtons,
 
- f2Skins;
+ f2Skins,
+ f2SettingsStorage;
 
 type
  Tf2Application = class(Td2dApplication)
@@ -22,11 +23,15 @@ type
   f_LogToFile: Boolean;
   f_QuestFileName: string;
   f_QuestToOpen: string;
+  f_SavePath: AnsiString;
+  f_SettingsStorage: Tf2SettingsStorage;
   f_Skin: Tf2Skin;
   function pm_GetDefaultButtonView: Id2dFramedButtonView;
   function pm_GetDefaultTextFont: Id2dFont;
   function pm_GetDefaultMenuFont: Id2dFont;
   function pm_GetDefaultTexture: Id2dTexture;
+  function pm_GetSavePath: AnsiString;
+  function pm_GetSettingsStorage: Tf2SettingsStorage;
  protected
   function Init: Boolean; override;
   procedure LoadGlobalResources; override;
@@ -43,6 +48,8 @@ type
   property LogToFile: Boolean read f_LogToFile write f_LogToFile;
   property QuestFileName: string read f_QuestFileName;
   property QuestToOpen: string read f_QuestToOpen;
+  property SavePath: AnsiString read pm_GetSavePath;
+  property SettingsStorage: Tf2SettingsStorage read pm_GetSettingsStorage;
   property Skin: Tf2Skin read f_Skin write f_Skin;
  end;
 
@@ -51,6 +58,7 @@ uses
  Windows,
  ShlObj,
  Classes,
+ MD5,
  d2dCore,
  d2dGUITypes,
  d2dUtils,
@@ -108,6 +116,7 @@ var
  l_Ext: string;
  //l_ZipOffset: Longint;
  l_FS       : TStream;
+ l_FullScreen: Boolean;
  l_QName: string;
  l_SPath: string;
 begin
@@ -170,7 +179,6 @@ begin
  end
  else
   f_QuestToOpen := QuestFileName;
- //f_QuestFileName := ExpandFileName(QuestFileName);
  SetCurrentDir(ExtractFilePath(QuestFileName));
  f_Skin := nil;
  if gD2DE.Resource_Exists('skin.xml', IsFromPack) then
@@ -188,9 +196,13 @@ begin
   end;
   f_Skin := Tf2Skin.Create(c_s_DefaultSkinName);
  end;
+ if SettingsStorage.IsVarExists('fullscreen') then
+  l_FullScreen := SettingsStorage['fullscreen'] <> 0
+ else
+  l_FullScreen := Skin.FullScreen;
  gD2DE.ScreenWidth  := Skin.ScreenWidth;
  gD2DE.ScreenHeight := Skin.ScreenHeight;
- gD2DE.Windowed := not Skin.FullScreen;
+ gD2DE.Windowed := not l_FullScreen;
  AddScene('splash', Tf2SplashScene.Create(Self));
  AddScene('main', Tf2MainScene.Create(Self));
  CurrentScene := 'splash';
@@ -242,12 +254,47 @@ begin
  Result := f_DefaultTexture;
 end;
 
+function Tf2Application.pm_GetSavePath: AnsiString;
+var
+ l_FileName: AnsiString;
+ l_Path: array[0..MAX_PATH] of Char;
+begin
+ if f_SavePath = '' then
+ begin
+  f_SavePath := ExtractFilePath(QuestFileName);
+  if not IsDirWritable(f_SavePath) then
+  begin
+   if SHGetSpecialFolderPath(0, @l_Path, CSIDL_APPDATA, True) then
+   begin
+    l_FileName := ExtractFileName(QuestFileName);
+    f_SavePath := IncludeTrailingPathDelimiter(l_Path) + 'FireURQ\' + ChangeFileExt(l_Filename, '_') +
+       MD5DigestToStr(MD5File(QuestFileName));
+    ForceDirectories(f_SavePath);
+   end;
+  end;
+ end;
+ Result := f_SavePath;
+end;
+
+function Tf2Application.pm_GetSettingsStorage: Tf2SettingsStorage;
+var
+ l_FileName: AnsiString;
+begin
+ if f_SettingsStorage = nil then
+ begin
+  l_FileName := ExtractFileName(QuestFileName);
+  f_SettingsStorage := Tf2SettingsStorage.Create(IncludeTrailingPathDelimiter(SavePath) + ChangeFileExt(l_Filename, '.gss'));
+ end;
+ Result := f_SettingsStorage;
+end;
+
 procedure Tf2Application.UnloadGlobalResources;
 begin
  f_DefaultButtonView := nil;
  f_DefaultTextFont := nil;
  f_DefaultMenuFont := nil;
  FreeAndNil(f_Skin);
+ FreeAndNil(f_SettingsStorage);
 end;
 
 

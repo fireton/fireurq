@@ -82,7 +82,6 @@ type
   f_KeepMenuActions: Boolean;
   f_MenuActionCaller: string;
   f_MenuActionCallerID: Tf2MenuActionCallerID;
-  f_SavePath: AnsiString;
   procedure ActionMessage(aMsg: string);
   procedure BuildMenuFromAction(const aActionID: string; aRoot: Td2dMenuItem);
   procedure ButtonActionHandler(aButtonIdx: Integer);
@@ -831,8 +830,6 @@ begin
 end;
 
 procedure Tf2MainScene.DoOpenQuest;
-var
- l_Path: array[0..MAX_PATH] of Char;
 begin
  ClearTextPane;
  if f_Code <> nil then
@@ -840,17 +837,7 @@ begin
  f_Code := TFURQCode.Create;
  f_Code.Load(F2App.QuestToOpen, OpenCodeFileProc);
  f_CurFilename := ExtractFileName(F2App.QuestFileName);
- f_SavePath := ExtractFilePath(F2App.QuestFileName);
- if not IsDirWritable(f_SavePath) then
- begin
-  if SHGetSpecialFolderPath(0, @l_Path, CSIDL_APPDATA, True) then
-  begin
-   f_SavePath := IncludeTrailingPathDelimiter(l_Path) + 'FireURQ\' + ChangeFileExt(f_CurFilename, '_') +
-      MD5DigestToStr(f_Code.SourceHash);
-   ForceDirectories(f_SavePath);
-  end;
- end;
- f_SaveLoadManager.SavePath := f_SavePath;
+ f_SaveLoadManager.SavePath := F2App.SavePath;
  StartOver(False);
 end;
 
@@ -1697,7 +1684,8 @@ end;
 procedure Tf2MainScene.StartOver(aNeedClearTextPane: Boolean = True);
 begin
  FreeAndNil(f_Context);
- Context := Tf2Context.Create(f_Code, f_CurFilename, f_SysTextFont, f_MenuFont, f_SysMenu.VisulalStyle, f_Txt, F2App.Skin, f_BFrame, f_SavePath);
+ Context := Tf2Context.Create(f_Code, f_CurFilename, f_SysTextFont, f_MenuFont, f_SysMenu.VisulalStyle, f_Txt, F2App.Skin, f_BFrame, F2App.SavePath);
+ Context.SettingsStorage := F2App.SettingsStorage;
  Context.OnDecoratorAction := DecoratorActionHandler;
  //f_mi_OpenQuest.Enabled := True;
  f_mi_Restart.Enabled := True;

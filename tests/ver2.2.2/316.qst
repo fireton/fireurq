@@ -1,0 +1,9 @@
+:0
+pln fullscreen = #fullscreen$
+btn 1, toggle
+end
+
+:1
+if fullscreen = 0 then fullscreen = 1 else fullscreen = 0
+gss_fullscreen = fullscreen
+goto 0
