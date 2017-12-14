@@ -1,0 +1,12 @@
+pln тестируем сейв и лоад
+btn s, save
+btn l, load
+end
+
+:s
+save "Сохранёнка"
+end
+
+:l
+load
+end

@@ -1017,6 +1017,7 @@ end;
 
 procedure Tf2MainScene.SysPopup;
 begin
+ f_SaveLoadManager.SetSaveBase(Context);
  f_mi_Load.Enabled := f_SaveLoadManager.IsAnySaveExists;
  f_SysMenu.Popup(f_SysMenuX, f_SysMenuY, f_SysMenuAlign);
 end;
