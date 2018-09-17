@@ -1,0 +1,18 @@
+:0
+music_looped = 1
+
+btn !doplay(1), Музыка 1
+btn !doplay(2), Музыка 2
+btn !doplay(3), Музыка 3
+btn !dosave, Сохранение
+end
+
+
+:doplay
+music #doplay_1$.it, 500
+end
+
+:dosave
+save "Saved", 1
+end
+
