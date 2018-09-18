@@ -138,7 +138,7 @@ type
   f_BackupStack : TFURQExecutionPoint;
   f_State: TFURQContextState;
   f_BackupState: TFURQContextState;
-  f_IsMenuBuild: Boolean;
+  f_ExecutionMode: TFURQContextExecutionMode;
   f_Menu: IJclStringList;
   f_StateParam: array[1..cMaxStateParams] of string;
   f_StateResult: string;
@@ -206,8 +206,8 @@ type
   property Buttons: IJclStringList read f_Buttons;
   property Menu: IJclStringList read f_Menu;
   property Code: TFURQCode read f_Code;
+  property ExecutionMode: TFURQContextExecutionMode read f_ExecutionMode;
   property Inventory: IJclStringList read f_Inventory;
-  property IsMenuBuild: Boolean read f_IsMenuBuild;
   property Stack: TFURQExecutionPoint read f_Stack;
   property State: TFURQContextState read f_State write f_State;
   property StateParam[aIndex: Integer]: string read pm_GetStateParam write pm_SetStateParam;
@@ -751,6 +751,7 @@ begin
  f_Variables.CaseSensitive := False;
  f_Inventory := JclStringList;
  f_Inventory.CaseSensitive := False;
+ f_ExecutionMode := emNormal;
  Restart;
 end;
 
@@ -789,7 +790,7 @@ var
 begin
  l_ID := ActionDataHash(aData);
  Result := l_ID;
- if IsMenuBuild then
+ if (ExecutionMode = emMenuBuild) then
   l_CurActions := f_MenuActions
  else
   if aActionList = nil then
@@ -814,7 +815,7 @@ begin
  l_LIdx := f_Code.Labels.IndexOf(aLabel);
  if (l_LIdx = -1) then
  begin
-  if (not IsMenuBuild) and (EnsureReal(Variables[cVarHidePhantoms]) <> 0) then
+  if (ExecutionMode <> emMenuBuild) and (EnsureReal(Variables[cVarHidePhantoms]) <> 0) then
    Exit;
   l_NewAID := '';
  end
@@ -823,7 +824,7 @@ begin
   l_BData := TFURQActionData.Create(l_LIdx, aParams, aModifier);
   l_NewAID := AddAction(l_BData);
  end;
- if IsMenuBuild then
+ if ExecutionMode = emMenuBuild then
   l_CurButtons := f_Menu
  else
   l_CurButtons := f_Buttons;
@@ -1334,8 +1335,8 @@ end;
 
 procedure TFURQContext.StartMenuBuild(aKeepMenuActions: Boolean);
 begin
- Assert(not f_IsMenuBuild, 'Menu build already started!');
- f_IsMenuBuild := True;
+ Assert(ExecutionMode <> emMenuBuild, 'Menu build already started!');
+ f_ExecutionMode := emMenuBuild;
  f_BackupStack := f_Stack;
  f_Stack := TFURQExecutionPoint.Create(nil);
  f_BackupState := f_State;
@@ -1346,12 +1347,12 @@ end;
 
 procedure TFURQContext.EndMenuBuild;
 begin
- Assert(f_IsMenuBuild, 'Menu build not started!');
+ Assert(ExecutionMode = emMenuBuild, 'Menu build not started!');
  FreeAndNil(f_Stack);
  f_Stack := f_BackupStack;
  f_BackupStack := nil;
  f_State := f_BackupState;
- f_IsMenuBuild := False;
+ f_ExecutionMode := emNormal;
 end;
 
 procedure TFURQContext.LoadActions(const aFiler: TFURQFiler);

@@ -31,6 +31,12 @@ type
   csUndefined // неопределённое состояние (до запуска игры, например)
  );
 
+ TFURQContextExecutionMode = (
+  emNormal,
+  emMenuBuild,
+  emEvent
+ );
+
  TFURQClsType = (clText, clButtons);
  TFURQClsTypeSet = set of TFURQClsType;
 

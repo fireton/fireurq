@@ -57,6 +57,7 @@ type
   function HandleExtraOps(const aOperator, aOperand: string): Boolean; virtual;
   procedure IncLine;
   procedure NotAvailableWhileMenuBuild;
+  procedure NotAvailableInEvents;
   procedure ParseOperators;
   property Line: Integer read pm_GetLine write pm_SetLine;
  public
@@ -1012,8 +1013,14 @@ end;
 
 procedure TFURQInterpreter.NotAvailableWhileMenuBuild;
 begin
- if f_CurContext.IsMenuBuild then
+ if f_CurContext.ExecutionMode = emMenuBuild then
   raise EFURQRunTimeError.Create('ќператор нельз€ использовать при построении меню!');
+end;
+
+procedure TFURQInterpreter.NotAvailableInEvents;
+begin
+ if f_CurContext.ExecutionMode = emEvent then
+  raise EFURQRunTimeError.Create('ќператор нельз€ использовать в событи€х!');
 end;
 
 procedure TFURQInterpreter.ParseAssigment(aString: string; var theVarName, theExpression: string);
