@@ -221,8 +221,7 @@ begin
  begin
   if not ValidVarName(l_Loc) then
    raise EFURQRunTimeError.CreateFmt(sInvalidLocationForParams, [l_Loc]);
-  if aParams.ObjectsMode = omNone then
-   EvaluateParams(aParams);
+  EvaluateParams(aParams);
   for I := 0 to Pred(aParams.Count) do
    f_CurContext.Variables[VarName(I+1)] := aParams.Variants[I];
  end;

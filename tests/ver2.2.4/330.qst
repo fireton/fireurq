@@ -1,0 +1,18 @@
+:1
+zx = "бл€м"
+decoradd z (100,10) TEXT "это вот [[ссылка|!тык(zx)]]"
+btn !change_a, замена 1
+btn !change_b, замена 2
+end
+
+:тык
+pln #%тык_1$=#%zx$
+end
+
+:change_a
+zx="бух"
+end
+
+:change_b
+zx="шм€к"
+end

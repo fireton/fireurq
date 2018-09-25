@@ -1,0 +1,15 @@
+menu_seltextcolor = 0xFF0000
+decoradd text (400, 100) TEXT "“ут вот будет [[ссылка|%menu]] с меню"
+btn %menu,  нопка с меню
+end
+
+:menu
+btn !fake, ѕункт 1
+btn !fake, ѕункт 2
+btn !fake, ѕункт 3
+btn !fake, ѕункт 4
+end
+
+:fake
+pln click
+end
