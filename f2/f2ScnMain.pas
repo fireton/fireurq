@@ -1262,7 +1262,7 @@ begin
     Processed(theEvent);
    end
    else
-   if (Context.State = csInputKey) then
+   if (Context.State = csInputKey) and (not D2DIsAnyOpenMenu(f_GUI)) then
    begin
     if (theEvent.KeyChar = 0) and not (theEvent.KeyCode in cNonProcessedKeys) then
     begin

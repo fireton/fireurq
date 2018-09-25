@@ -1,0 +1,9 @@
+pln Не должен срабатывать anykey при открытии и закрытии [[меню|!a]].
+:loop
+anykey
+pln А он сработал!
+goto loop
+
+:a
+pln fake
+end
