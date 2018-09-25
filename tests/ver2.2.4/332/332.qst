@@ -1,0 +1,22 @@
+music_looped = 0
+:0
+decoradd disp (500, 100) TEXT "stopped"
+btn !xm, Start XM Music
+btn !midi, Start MIDI Music
+btn !stop, Music stop
+:loop
+pause 1000
+if is_music then decor_disp_text = "playing" else decor_disp_text = "stopped"
+goto loop
+
+:xm
+music trolls_a.xm
+end
+
+:midi
+music mission.mid
+end
+
+:stop
+music stop
+end

@@ -26,6 +26,7 @@ type
  Tf2Context = class(TFURQContext, Id2dTextAddingTool)
  private
   f_BtnMenuAlign: Td2dAlign;
+  f_CurrentMusic: AnsiString;
   f_Decorators : Tf2DecoratorList;
   f_DefTPLeft  : Single;
   f_DefTPTop   : Single;
@@ -447,15 +448,25 @@ begin
  f_TextPane.LoadText(aFiler, f_FontPool, f_PicturePool);
  f_BtnMenuAlign := Td2dAlign(aFiler.ReadByte);
  f_LinkMenuAlign := Td2dAlign(aFiler.ReadByte);
+ if aFiler.ReadBoolean then // музыку надо включить
+  MusicPlay(aFiler.ReadString, 0)
+ else
+  MusicStop(0); 
 end;
 
 procedure Tf2Context.DoSaveData(aFiler: TFURQFiler);
+var
+ l_IsMusic: Boolean;
 begin
  inherited DoSaveData(aFiler);
  Decorators.Save(aFiler);
  f_TextPane.SaveText(aFiler);
  aFiler.WriteByte(Ord(f_BtnMenuAlign));
  aFiler.WriteByte(Ord(f_LinkMenuAlign));
+ l_IsMusic := gD2DE.Music_IsPlaying and (f_CurrentMusic <> ''); // второе - если музыку выключили с угасанием (она звучит, но уже считается выключенной)
+ aFiler.WriteBoolean(l_IsMusic);
+ if l_IsMusic then
+  aFiler.WriteString(f_CurrentMusic);
 end;
 
 procedure Tf2Context.DropLinks;
@@ -659,6 +670,9 @@ begin
   if (Result = Null) and AnsiSameText(aName, c_FullScreen) then
    Result := BoolToVar(not gD2DE.Windowed);
 
+  if (Result = Null) and AnsiSameText(aName, c_IsMusic) then
+   Result := BoolToVar(gD2DE.Music_IsPlaying);
+
   if (Result = Null) and AnsiStartsText(cs_GSS_, aName) then
   begin
    l_DName := Copy(aName, 5, MaxInt);
@@ -724,7 +738,8 @@ begin
   AnsiSameText(aVarName, c_MouseX) or AnsiSameText(aVarName, c_MouseY) or
   AnsiSameText(aVarName, c_BMenuAlign) or AnsiSameText(aVarName, c_LMenuAlign) or
   AnsiSameText(aVarName, c_FullScreen) or AnsiSameText(aVarName, c_SaveNameBase) or
-  AnsiStartsText(cs_GSS_, aVarName);
+  AnsiStartsText(cs_GSS_, aVarName) or
+  AnsiSameText(aVarName, c_IsMusic);
 end;
 
 procedure Tf2Context.KillSettingsStorage;
@@ -735,11 +750,13 @@ end;
 procedure Tf2Context.MusicPlay(const aFilename: string; aFadeTime: Integer);
 begin
  gD2DE.Music_Play(aFilename, Variables[c_MusicLooped] > 0, aFadeTime);
+ f_CurrentMusic := aFilename;
 end;
 
 procedure Tf2Context.MusicStop(aFadeTime: Integer);
 begin
  gD2DE.Music_Stop(aFadeTime);
+ f_CurrentMusic := '';
 end;
 
 procedure Tf2Context.OutPicture(const aFilename: string; aX, aY, aWidth, aHeight: Integer);

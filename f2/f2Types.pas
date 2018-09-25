@@ -63,6 +63,7 @@ const
  c_LMenuAlign = 'lmenualign';
 
  c_FullScreen = 'fullscreen';
+ c_IsMusic    = 'is_music';
 
  c_SaveNameBase = 'savenamebase';
 
