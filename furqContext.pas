@@ -1037,6 +1037,7 @@ const
 begin
  l_Tmp := Get8087CW;
  Set8087CW($1372);
+ DecimalSeparator := '.'; // иногда он слетает
  if (aNumber >= -cMaxDisp) and (aNumber <= cMaxDisp) then
   Result := FormatFloat(f_NumFormatString, aNumber)
  else

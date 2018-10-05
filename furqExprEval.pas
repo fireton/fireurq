@@ -479,6 +479,7 @@ var
       end;
       SetLength(l_SubStr, l_SSPos);
       f_Token := etNumber;
+      DecimalSeparator := '.'; // иногда он слетает
       f_TokenValue := StrToFloatDef(l_SubStr, 0.0);
      end;
      f_TokenEnd := f_Pos;
@@ -727,6 +728,7 @@ begin
  inherited Create;
  f_Context := aContext;
  f_Lexer := TfurqLexer.Create;
+ DecimalSeparator := '.'; // иногда он слетает
 end;
 
 destructor TfurqExprEvaluator.Destroy;

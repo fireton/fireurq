@@ -1,0 +1,12 @@
+:death
+cls
+decordel
+decoradd box (0,0,-1) RECT 800, 600, 0xFFAF0000
+decoradd death (400.5,300.5, -2) IMAGE "death.png"
+decor_death_hotx = 200
+decor_death_hoty = 200
+; decor_death_script = "scl 1.05,1500/scl 1,1000/rst"
+pause 2000
+goto death
+;decorcol box 0xFFAF0000, 5000
+end

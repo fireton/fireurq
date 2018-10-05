@@ -258,6 +258,7 @@ var
  l_Pos: Integer;
  l_LabelIdx: Integer;
 begin
+ DecimalSeparator := '.'; // иногда он слетает
  try
   f_CurContext := aContext;
   // обрабатываем ответ от пользователя
