@@ -191,6 +191,9 @@ const
  SVarIsSyskey = 'is_syskey';
  SStartLog = 'Начать запись лога';
  SStopLog  = 'Остановить запись лога';
+ SFullScreen = 'fullscreen';
+ SAltEnterDisable = 'altenter_disable';
+ SEscapeDisable = 'escape_disable';
 
 // END resource string wizard section
 
@@ -1287,7 +1290,14 @@ begin
   begin
    if (theEvent.KeyCode = D2DK_ENTER) and (theEvent.Flags and D2DINP_ALT > 0) then
    begin
-    gD2DE.Windowed := not gD2DE.Windowed;
+    // переключаем через переменную, дабы состояние сохранялось и в settings storage
+    if (f_Context.Variables[SAltEnterDisable] = 0) then
+    begin
+     if f_Context.Variables[SFullscreen] > 0 then
+      f_Context.Variables[SFullscreen] := 0
+     else
+      f_Context.Variables[SFullscreen] := 1;
+    end;
     Processed(theEvent);
    end;
   end;
@@ -1353,7 +1363,8 @@ begin
    end;
    if (theEvent.KeyCode = D2DK_ESCAPE) and (not f_SysMenu.Visible) and SysMenuEnabled then
    begin
-    OpenSysMenu;
+    if f_Context.Variables[SEscapeDisable] = 0 then
+     OpenSysMenu;
     Processed(theEvent);
    end;
   end;

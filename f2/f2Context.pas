@@ -185,6 +185,7 @@ const
  cs_IMG = '[IMG]';
  cs__color = '_color';
  cs__result = '_result';
+ cs_gss_fullscreen = 'gss_fullscreen';
 
  cs_MouseDecoratorVarName = 'mousecursor';
 
@@ -1210,6 +1211,7 @@ begin
   if (not Result) and AnsiSameText(aName, c_FullScreen) then
   begin
    gD2DE.Windowed := (aValue = 0);
+   Variables[cs_gss_fullscreen] := aValue; // сразу пишем и в сторидж
    Result := True;
   end;
 

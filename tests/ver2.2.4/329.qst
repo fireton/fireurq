@@ -1,0 +1,8 @@
+:0
+cls
+if escape_disable then btn d(0), Разрешить Escape else btn d(1), Запретить Escape
+end
+
+:d
+escape_disable = d_1
+goto 0

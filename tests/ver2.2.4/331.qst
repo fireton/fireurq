@@ -1,0 +1,15 @@
+:0
+cls
+if altenter_disable then pln Переключение фулскрина по Alt-Enter запрещено! else pln Можно переключить фулскрин по Alt-Enter
+pln
+if altenter_disable then btn ae(0), Разрешить Alt-Enter else btn ae(1), Запретить Alt-Enter
+if fullscreen then btn fs(0), В окне else btn fs(1), На весь экран
+end
+
+:fs
+fullscreen = fs_1
+goto 0
+
+:ae
+altenter_disable = ae_1
+goto 0
