@@ -1,0 +1,25 @@
+:0
+music_1 = "skip.ogg"
+music_2 = "PD-BEER.XM"
+fade = 1500
+i = 1
+
+:next
+music #%music_#i$$, #fade$
+i = i + 1
+if i > 2 then i = 1
+
+:1
+cls
+if fade > 0 then btn f, По очереди else btn f, Кроссфейд
+btn next, Следующий трек
+btn s, Стоп
+end
+
+:f
+fade = -fade
+goto 1
+
+:s
+music stop, 1500
+goto 1
