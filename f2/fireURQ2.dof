@@ -114,8 +114,8 @@ IncludeVerInfo=1
 AutoIncBuild=1
 MajorVer=2
 MinorVer=2
-Release=3
-Build=1095
+Release=4
+Build=1102
 Debug=0
 PreRelease=0
 Special=0
@@ -126,13 +126,13 @@ CodePage=1251
 [Version Info Keys]
 CompanyName=
 FileDescription=FireURQ
-FileVersion=2.2.3.1095
+FileVersion=2.2.4.1102
 InternalName=
 LegalCopyright=Fireton 2009-2017
 LegalTrademarks=
 OriginalFilename=
 ProductName=FireURQ
-ProductVersion=2.2.3 "Ajenta"
+ProductVersion=2.2.4 "Veta"
 Comments=
 [HistoryLists\hlDebugSourcePath]
 Count=3
