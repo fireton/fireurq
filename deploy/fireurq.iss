@@ -8,7 +8,7 @@ Source: ..\exe\bass.dll; DestDir: {app}
 Source: ..\exe\d3dx8d.dll; DestDir: {app}
 
 [Setup]
-MinVersion=0,5.01.2600
+MinVersion=0,6.0.6000
 AppName=FireURQ
 AppVersion=2.2.4 "Veta"
 AppPublisher=Fireton
